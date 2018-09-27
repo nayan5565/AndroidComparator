@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,48 +26,73 @@ public class MainActivity extends AppCompatActivity {
         createList();
         display();
         loadList(models);
+        sortingDate();
+    }
+
+    private Date dateFormat(String date2) {
+        SimpleDateFormat fmt = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = null;
+        try {
+            date = fmt.parse(date2);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+
+        }
+
+        return date;
     }
 
     private void createList() {
+
+
         models = new ArrayList<>();
 
         model = new Model();
         model.setAge(26);
         model.setName("Balam");
-        model.setCreated(new Date());
+        model.setCreated(dateFormat("09-09-2018"));
         models.add(model);
 
         model = new Model();
         model.setAge(30);
         model.setName("Habib");
-        model.setCreated(new Date());
+        model.setCreated(dateFormat("01-09-2018"));
         models.add(model);
 
         model = new Model();
         model.setAge(24);
         model.setName("Abbas");
-        model.setCreated(new Date());
+        model.setCreated(dateFormat("22-09-2018"));
         models.add(model);
 
         model = new Model();
         model.setAge(33);
         model.setName("Galib");
-        model.setCreated(new Date());
+        model.setCreated(dateFormat("12-09-2018"));
         models.add(model);
 
         model = new Model();
         model.setAge(32);
         model.setName("Dalim");
-        model.setCreated(new Date());
+        model.setCreated(dateFormat("03-09-2018"));
         models.add(model);
 
         model = new Model();
         model.setAge(35);
         model.setName("Ekbal");
-        model.setCreated(new Date());
+        model.setCreated(dateFormat("29-09-2018"));
         models.add(model);
 
 
+    }
+
+    private void sortingDate() {
+        Collections.sort(models, new DateComparator());
+
+        for (int i = 0; i < models.size(); i++) {
+            Log.e("Date", " is : " + models.get(i).getCreated());
+        }
     }
 
     private void display() {
