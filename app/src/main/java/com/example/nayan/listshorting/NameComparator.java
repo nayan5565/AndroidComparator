@@ -16,11 +16,8 @@ public class NameComparator implements Comparator<Model> {
 
         // ascending order (descending order would be: name2.compareTo(name1))
 
-        return name2.compareTo(name1);
+        return name1.compareTo(name2);
 
     }
-
-
-
 }
 
